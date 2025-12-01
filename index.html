@@ -1,5 +1,3 @@
-HTML
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -47,7 +45,59 @@ HTML
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             text-align: center;
+            margin-bottom: 20px;
         }
+        
+        /* === CSS MỚI CHO BỐ CỤC 3 CỘT (Flexbox) === */
+        
+        /* 1. Thiết lập Flex Container */
+        .member-grid {
+            display: flex; /* Bật chế độ flex */
+            flex-wrap: wrap; /* Cho phép các mục xuống hàng khi không đủ chỗ */
+            gap: 20px; /* Khoảng cách giữa các card */
+            justify-content: center; /* Căn giữa các card */
+            padding: 20px 0;
+        }
+        
+        /* 2. Thiết lập kích thước cho mỗi card */
+        .member-card {
+            /* Tính toán để 3 card nằm vừa trên 1 hàng (100% / 3 = 33.333%) */
+            /* Trừ đi 20px gap ở hai bên để đảm bảo không bị tràn */
+            flex: 0 1 calc(33.333% - 15px); 
+            min-width: 250px; /* Đảm bảo kích thước tối thiểu trên màn hình nhỏ */
+            
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box; /* Bao gồm padding và border trong chiều rộng */
+        }
+        
+        /* 3. Định dạng Tên thành viên */
+        .member-card h3 {
+            color: #007BFF; 
+            font-size: 1.1em;
+            margin: 0 0 10px 0; /* Khoảng cách dưới tên */
+        }
+        
+        /* 4. Định dạng Ảnh */
+        .member-card img {
+            width: 100%; /* Ảnh sẽ lấp đầy chiều rộng của card */
+            height: auto; 
+            aspect-ratio: 1 / 1; /* Giữ tỷ lệ khung hình vuông (nếu ảnh gốc là vuông) */
+            object-fit: cover; /* Đảm bảo ảnh lấp đầy không gian mà không bị méo */
+            border-radius: 4px;
+            display: block;
+        }
+        
+        /* Media query cho màn hình nhỏ hơn (ví dụ: mobile), chỉ hiển thị 1 cột */
+        @media (max-width: 768px) {
+            .member-card {
+                flex: 0 1 100%; /* Mỗi card chiếm 100% chiều rộng */
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -61,7 +111,7 @@ HTML
         <a href="index.html">Trang Chủ</a>
         <a href="home.html">Thành Viên nhóm</a>
         <a href="chuyendichoi.html">Hoạt Động Nhóm</a>
-        </nav>
+    </nav>
 
     <div class="container">
         <section class="gioi-thieu">
@@ -70,43 +120,64 @@ HTML
             <p>Trang web này được lập ra để trở thành nơi lưu giữ những hình ảnh, câu chuyện và kỷ niệm không thể quên trong suốt 3 năm học cấp 3 .</p>
             <p>Hãy cùng nhau nhìn lại những chuyến đi, những buổi học, và những người Thầy, Cô đã đồng hành cùng chúng ta.</p>
             
-            </section>
+        </section>
         
         <hr>
         
         <section class="thong-tin-nhom">
             <h2>Các Thành Viên Chính Của Nhóm</h2>
-             <p>Ngô Tống Đăng Khôi</p>
-			 <p>Huỳnh Minh Hưng</p>
-			 <p>Ngô Doãn Hồng Đức</p>
-			 <p>Ưng Nguyễn Minh Toàn</p>
-			 <p>Nguyễn Lê Đông Quân</p>
-			 <p>Cao Minh Đạt</p>
-			 <p>Nguyễn Ngọc Khánh Duy</p>
-			 <p>Nguyễn Truyền Nhân</p>
-			<p>Nguyễn Quốc Đại</p>
- 			<img src="e61c0b63-e39f-4538-b99a-84951eae758d.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-			<img src="d8bd875a-a0bb-42e1-8b98-32bdba73bf51.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-			<img src="1ed700d0-3a1d-4f97-9953-ec48e4c5640f.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-			<img src="2511600b-0413-442f-9bef-d336d9ff63ac.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-			<img src="b000f920-ab04-4380-b9e7-7e7525c9a50f.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-			<img src="afb03541-aa10-4386-95a0-a75a92fd4f17.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-			<img src="b2837d9e-fe76-4230-8623-86774486f708.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-			<img src="e34d0dd6-ffd4-41da-8b70-065766cc8307.jpg
-" alt=" pt "
-		style="width:300px;height:300px;">
-			   <img src="bcbc8ede-7dc4-4428-9411-192763998e9e.jpg" alt=" pt "
-		style="width:300px;height:300px;">
-            </section>
+            
+            <div class="member-grid">
+                
+                <div class="member-card">
+                    <h3>Ngô Tống Đăng Khôi</h3>
+                    <img src="e61c0b63-e39f-4538-b99a-84951eae758d.jpg" alt="Ảnh Ngô Tống Đăng Khôi">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Huỳnh Minh Hưng</h3>
+                    <img src="d8bd875a-a0bb-42e1-8b98-32bdba73bf51.jpg" alt="Ảnh Huỳnh Minh Hưng">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Ngô Doãn Hồng Đức</h3>
+                    <img src="1ed700d0-3a1d-4f97-9953-ec48e4c5640f.jpg" alt="Ảnh Ngô Doãn Hồng Đức">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Ưng Nguyễn Minh Toàn</h3>
+                    <img src="2511600b-0413-442f-9bef-d336d9ff63ac.jpg" alt="Ảnh Ưng Nguyễn Minh Toàn">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Nguyễn Lê Đông Quân</h3>
+                    <img src="b000f920-ab04-4380-b9e7-7e7525c9a50f.jpg" alt="Ảnh Nguyễn Lê Đông Quân">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Cao Minh Đạt</h3>
+                    <img src="afb03541-aa10-4386-95a0-a75a92fd4f17.jpg" alt="Ảnh Cao Minh Đạt">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Nguyễn Ngọc Khánh Duy</h3>
+                    <img src="b2837d9e-fe76-4230-8623-86774486f708.jpg" alt="Ảnh Nguyễn Ngọc Khánh Duy">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Nguyễn Truyền Nhân</h3>
+                    <img src="e34d0dd6-ffd4-41da-8b70-065766cc8307.jpg" alt="Ảnh Nguyễn Truyền Nhân">
+                </div>
+                
+                <div class="member-card">
+                    <h3>Nguyễn Quốc Đại</h3>
+                    <img src="bcbc8ede-7dc4-4428-9411-192763998e9e.jpg" alt="Ảnh Nguyễn Quốc Đại">
+                </div>
+                
+            </div>
+            
+        </section>
     </div>
 
 </body>
 </html>
-
